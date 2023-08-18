@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Filament\Tables\Columns\Layout\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -48,5 +49,9 @@ class User extends Authenticatable
     public function canAccessPanel(Panel $panel): bool
     {
         return str_ends_with($this->email, app('auth.filament_email_default')) && $this->hasVerifiedEmail();
+    }
+
+    public function hasManyTask(): HasMany {
+        return $this->hasMany(Task::class);
     }
 }
