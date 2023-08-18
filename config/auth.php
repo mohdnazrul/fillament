@@ -111,5 +111,6 @@ return [
     */
 
     'password_timeout' => 10800,
+    'filament_email_default' => env('FILAMENT_AUTH'),
 
 ];
